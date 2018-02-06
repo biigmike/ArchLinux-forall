@@ -1,0 +1,61 @@
+*****************************
+Arch Linux für Linux-Neulinge
+*****************************
+Arch Linux installieren für jemand der keine Ahnung von Linux hat und seinen Computer/Notebook einfach nur benutzen will.
+Btrfs-Snapper-Pamac
+***************
+Partitionierung
+***************
+/dev/sda1* ==> Label=ROOT ==> Btrfs
+Btrfs Subvolumes:		    @	  @log	  	@pkg				           @snapshots
+==> Arch Linux System	  /	  /var/log	/var/cache/pacman/pkg	 /.snapshots
+/dev/sda2 ==> Label=HOME ==> XFS
+==> Benutzerdaten	/home
+/dev/sda3 ==> Label=SWAP ==> Linux Swap
+(Swapfile – XFS)
+
+grub install /dev/sda
+************************
+Partitionieren mit fdisk
+************************
+
+*********************
+Dateisysteme anlegen:
+*********************
+mkfs.btrfs -L ROOT /dev/sda1
+mkfs.xfs -L HOME /dev/sda2
+mkswap -L SWAP /dev/sda3
+
+********************
+Subvolumes erstellen
+********************
+mount /dev/sda1 /mnt
+btrfs sub cr /mnt/@
+btrfs sub cr /mnt/@log
+btrfs sub cr /mnt/@pkg
+btrfs sub cr /mnt/@snapshots
+umount /mnt
+
+********************
+Dateisysteme mounten
+********************
+mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@ /dev/sda1 /mnt
+mkdir -p /mnt/{home,var/log,var/cache/pacman/pkg,btrfs}
+mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@log /dev/sda1 /mnt/var/log
+mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@pkg /dev/sda1 /mnt/var/cache/pacman/pkg/
+mount -o relatime,space_cache=v2,ssd,compress=lzo,subvolid=5 /dev/sda1 /mnt/btrfs
+mount /dev/sda2 /mnt/home
+swapon /dev/sda3
+
+***********************
+Arch Linux installieren
+***********************
+pacstrap /mnt base base-devel bash-completion btrfs-progs xfsprogs dosfstools grub
+
+??????????
+genfstab
+??????????
+
+fstab nacharbeiten. Die ID's vom Btrfs rausnehmen und nur die subvols stehen lassen ausser bei subvolid=5.
+
+#Total Arch Linux | 3.4 Snapper auf die leichte Art!16:13#

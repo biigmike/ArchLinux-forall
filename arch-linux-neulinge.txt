@@ -58,4 +58,10 @@ genfstab
 
 fstab nacharbeiten. Die ID's vom Btrfs rausnehmen und nur die subvols stehen lassen ausser bei subvolid=5.
 
+************************
+Bootloader Konfiguration
+************************
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
 #Total Arch Linux | 3.4 Snapper auf die leichte Art!16:13#

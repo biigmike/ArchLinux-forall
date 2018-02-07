@@ -64,4 +64,67 @@ Bootloader Konfiguration
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
-#Total Arch Linux | 3.4 Snapper auf die leichte Art!16:13#
+**************************
+Optional die Fehlermeldung des Journallog beim Herunterfahren zu entfernen
+**************************
+
+In Datei /etc/systemd/journald.conf im Block [Journal] den Eintrag Storage=volatile setzen
+
+**************************************
+Überprüfung ob alle Subvolumes da sind
+**************************************
+sudo su
+btrfs sub list /
+
+Es sollten da sein: @, @log, @pkg, @snapshots (@home)
+
+Alles richtig gemountet: df -Th
+
+*******
+Snapper
+*******
+
+pacman -S Snapper
+
+Erstkonfiguration Snapper um snapshots von Root zu bekommen
+
+snapper -c root create-config /
+
+erstellt ein Subvolume .snapshots, was wir nicht gebrauchen können
+
+btrfs sub del /.snapshots/
+mkdir /.snapshots
+nano /etc/fstab
+
+In der fstab ein neuen Eintrag ertellen (einen von vorher kopieren) für /.snapshots (Subvolume @snapshots)
+
+mount /.snapshots/
+
+snapper list
+
+sollte ein Eintra mit single 0  root  current
+erscheinen
+
+Programme aus AUR (AUR-Helper trizen):
+grub-btrfs
+snap-pac (Pacman Hooks für vorher/nachher Aktionen)
+snap-pac-grub (sorgt dafür, dass die Bootloaderkonfiguration neu geschrieben wird, damit die Snapshots im Bootloader auftauchen)
+
+**********
+grub-Btrfs
+**********
+less /etc/grub.d/41_snapshots-btrfs (enthällt Erklärungen und möglicheOptionen, die man anwenden kann)
+
+(2.Terminal)
+nano /etc/default/grub
+Einträge:
+GRUB_BTRFS_CREATE_ONLY_HARMONIZED_ENTRIES="true"
+GRUB_BTRFS_LIMIT="10"
+hinzufügen.
+
+Snapperconfig anpassen
+nano /etc/snapper/configs/root
+
+
+
+#Total Arch Linux | 3.4 Snapper auf die leichte Art!23:45#

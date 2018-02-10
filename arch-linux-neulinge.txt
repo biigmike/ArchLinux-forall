@@ -125,6 +125,35 @@ hinzufügen.
 Snapperconfig anpassen
 nano /etc/snapper/configs/root
 
+NUMBER_CLEANUP="yes"
 
+NUMBER_MIN_AGE="0"
+NUMBER_LIMIT="12"
+NUMBER_LIMIT_IMPORTANT="3"
+
+TIMLINE_CREATE="no" (!Sonst macht er jede Stunde einen Snapshot)
+
+Prüfen ob cronie  läuft, weil Numbercleanup ist ein Cron-Job
+systemctl status cronie.service
+
+********
+snap-pac
+********
+
+Installiert Hooks, die Snapshots (vorher/nachher) auslösen.
+
+*******************
+snap-pac-grub (AUR)
+*******************
+
+Sorgt dafür, dass nach einer pacman-Aktion die Bootloaderkonfiguration aktualisiert wird
+
+***********************************
+ggf. Fehlende pgp-Keys installieren
+***********************************
+
+pgp --search-keys <ID> (ID=kopieren von "Unbekannter öffentlicher Schlüssel...")
+
+Tippe "1" um zu importieren.
 
 #Total Arch Linux | 3.4 Snapper auf die leichte Art!23:45#

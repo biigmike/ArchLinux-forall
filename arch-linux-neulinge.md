@@ -1,10 +1,8 @@
-*****************************
-Arch Linux für Linux-Neulinge
-*****************************
+# Arch Linux für Linux-Neulinge
 Arch Linux installieren für jemand der keine Ahnung von Linux hat und seinen Computer/Notebook einfach nur benutzen will.
 Btrfs-Snapper-Pamac
 ***************
-Partitionierung
+## Partitionierung
 ***************
 /dev/sda1* ==> Label=ROOT ==> Btrfs
 Btrfs Subvolumes:		    @	  @log	  	@pkg				           @snapshots
@@ -14,43 +12,40 @@ Btrfs Subvolumes:		    @	  @log	  	@pkg				           @snapshots
 /dev/sda3 ==> Label=SWAP ==> Linux Swap
 (Swapfile – XFS)
 
-grub install /dev/sda
-************************
-Partitionieren mit fdisk
-************************
+`grub install /dev/sda`
 
-*********************
-Dateisysteme anlegen:
-*********************
-mkfs.btrfs -L ROOT /dev/sda1
+## Partitionierung/Formatierung
+### Partitionieren mit fdisk
+### Dateisysteme anlegen:
+`mkfs.btrfs -L ROOT /dev/sda1
 mkfs.xfs -L HOME /dev/sda2
-mkswap -L SWAP /dev/sda3
+mkswap -L SWAP /dev/sda3`
 
 ********************
-Subvolumes erstellen
+## Subvolumes erstellen
 ********************
-mount /dev/sda1 /mnt
+`mount /dev/sda1 /mnt
 btrfs sub cr /mnt/@
 btrfs sub cr /mnt/@log
 btrfs sub cr /mnt/@pkg
 btrfs sub cr /mnt/@snapshots
-umount /mnt
+umount /mnt`
 
 ********************
-Dateisysteme mounten
+## Dateisysteme mounten
 ********************
-mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@ /dev/sda1 /mnt
+`mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@ /dev/sda1 /mnt
 mkdir -p /mnt/{home,var/log,var/cache/pacman/pkg,btrfs}
 mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@log /dev/sda1 /mnt/var/log
 mount -o relatime,space_cache=v2,ssd,compress=lzo,subvol=@pkg /dev/sda1 /mnt/var/cache/pacman/pkg/
 mount -o relatime,space_cache=v2,ssd,compress=lzo,subvolid=5 /dev/sda1 /mnt/btrfs
 mount /dev/sda2 /mnt/home
-swapon /dev/sda3
+swapon /dev/sda3`
 
 ***********************
-Arch Linux installieren
+# Arch Linux installieren
 ***********************
-pacstrap /mnt base base-devel bash-completion btrfs-progs xfsprogs dosfstools grub
+`pacstrap /mnt base base-devel bash-completion btrfs-progs xfsprogs dosfstools grub`
 
 ??????????
 genfstab

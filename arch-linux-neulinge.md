@@ -47,78 +47,80 @@ swapon /dev/sda3`
 ***********************
 `pacstrap /mnt base base-devel bash-completion btrfs-progs xfsprogs dosfstools grub`
 
-??????????
-genfstab
-??????????
+## fstab mit Labels generieren und nacharbeiten
+
+`genfstab -Lp /mnt > /mnt/etc/fstab`
 
 fstab nacharbeiten. Die ID's vom Btrfs rausnehmen und nur die subvols stehen lassen ausser bei subvolid=5.
 
 ************************
-Bootloader Konfiguration
+#Bootloader Konfiguration
 ************************
 
-grub-mkconfig -o /boot/grub/grub.cfg
+`grub-mkconfig -o /boot/grub/grub.cfg`
 
 **************************
-Optional die Fehlermeldung des Journallog beim Herunterfahren zu entfernen
+##Optional die Fehlermeldung des Journallog beim Herunterfahren zu entfernen
 **************************
 
 In Datei /etc/systemd/journald.conf im Block [Journal] den Eintrag Storage=volatile setzen
 
 **************************************
-Überprüfung ob alle Subvolumes da sind
+##Überprüfung ob alle Subvolumes da sind
 **************************************
-sudo su
-btrfs sub list /
+`sudo su
+btrfs sub list /`
 
 Es sollten da sein: @, @log, @pkg, @snapshots (@home)
 
-Alles richtig gemountet: df -Th
+Alles richtig gemountet:
+`df -Th`
 
 *******
-Snapper
+#Snapper installieren
 *******
 
-pacman -S Snapper
+`pacman -S Snapper`
 
 Erstkonfiguration Snapper um snapshots von Root zu bekommen
 
-snapper -c root create-config /
+`snapper -c root create-config /`
 
 erstellt ein Subvolume .snapshots, was wir nicht gebrauchen können
 
-btrfs sub del /.snapshots/
+`btrfs sub del /.snapshots/
 mkdir /.snapshots
-nano /etc/fstab
+nano /etc/fstab`
 
 In der fstab ein neuen Eintrag ertellen (einen von vorher kopieren) für /.snapshots (Subvolume @snapshots)
 
-mount /.snapshots/
+`mount /.snapshots/
 
-snapper list
+snapper list`
 
-sollte ein Eintra mit single 0  root  current
-erscheinen
+sollte ein Eintrag mit single 0  root  current
+erscheinen.
 
 Programme aus AUR (AUR-Helper trizen):
-grub-btrfs
-snap-pac (Pacman Hooks für vorher/nachher Aktionen)
-snap-pac-grub (sorgt dafür, dass die Bootloaderkonfiguration neu geschrieben wird, damit die Snapshots im Bootloader auftauchen)
+
+- grub-btrfs
+- snap-pac (Pacman Hooks für vorher/nachher Aktionen)
+- snap-pac-grub (sorgt dafür, dass die Bootloaderkonfiguration neu geschrieben wird, damit die Snapshots im Bootloader auftauchen)
 
 **********
-grub-Btrfs
+#grub-Btrfs
 **********
-less /etc/grub.d/41_snapshots-btrfs (enthällt Erklärungen und möglicheOptionen, die man anwenden kann)
+`less /etc/grub.d/41_snapshots-btrfs` (enthällt Erklärungen und möglicheOptionen, die man anwenden kann)
 
 (2.Terminal)
-nano /etc/default/grub
+`nano /etc/default/grub`
 Einträge:
 GRUB_BTRFS_CREATE_ONLY_HARMONIZED_ENTRIES="true"
 GRUB_BTRFS_LIMIT="10"
 hinzufügen.
 
 Snapperconfig anpassen
-nano /etc/snapper/configs/root
+`nano /etc/snapper/configs/root`
 
 NUMBER_CLEANUP="yes"
 
@@ -132,7 +134,7 @@ Prüfen ob cronie  läuft, weil Numbercleanup ist ein Cron-Job
 systemctl status cronie.service
 
 ********
-snap-pac
+#snap-pac
 ********
 
 Installiert Hooks, die Snapshots (vorher/nachher) auslösen.
@@ -144,7 +146,7 @@ snap-pac-grub (AUR)
 Sorgt dafür, dass nach einer pacman-Aktion die Bootloaderkonfiguration aktualisiert wird
 
 ***********************************
-ggf. Fehlende pgp-Keys installieren
+##ggf. Fehlende pgp-Keys installieren
 ***********************************
 
 pgp --search-keys <ID> (ID=kopieren von "Unbekannter öffentlicher Schlüssel...")

@@ -1,4 +1,5 @@
 # Arch Linux für Linux-Neulinge
+# nach dem Video "Total Arch Linux | 3.4 Snapper auf die leichte Art!"
 Arch Linux installieren für jemand der keine Ahnung von Linux hat und seinen Computer/Notebook einfach nur benutzen will.
 Btrfs-Snapper-Pamac
 ***************
@@ -131,7 +132,7 @@ NUMBER_LIMIT_IMPORTANT="3"
 TIMLINE_CREATE="no" (!Sonst macht er jede Stunde einen Snapshot)
 
 Prüfen ob cronie  läuft, weil Numbercleanup ist ein Cron-Job
-systemctl status cronie.service
+`systemctl status cronie.service`
 
 ********
 #snap-pac
@@ -140,7 +141,7 @@ systemctl status cronie.service
 Installiert Hooks, die Snapshots (vorher/nachher) auslösen.
 
 *******************
-snap-pac-grub (AUR)
+#snap-pac-grub (AUR)
 *******************
 
 Sorgt dafür, dass nach einer pacman-Aktion die Bootloaderkonfiguration aktualisiert wird
@@ -153,4 +154,4 @@ pgp --search-keys <ID> (ID=kopieren von "Unbekannter öffentlicher Schlüssel...
 
 Tippe "1" um zu importieren.
 
-#Total Arch Linux | 3.4 Snapper auf die leichte Art!23:45#
+snapper list sollte dann schon ein paar Snapshots anzeigen.

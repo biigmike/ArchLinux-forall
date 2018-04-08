@@ -129,10 +129,50 @@ grub-install --target=x86_64-efi --efidirectory=/boot/efi
 BIOS
 grub-install /dev/sda
 
-...
-XFCE installieren und alles, was man so braucht
-...
+User anlegen
+`useradd -m -g users -G wheel,audio,video -s /bin/bash <username>`
 
+Passwort für user
+`passwd <username>`
+
+Sudo einrichten
+`EDITOR=nano visudo`
+Zeile mit %wheel ALL=[ALL] ALL auskommentieren
+
+Nützliche Dienste installieren und aktivieren
+`pacman -S acpid avahi cups cronie
+systemctl enable avahi-daemon cups.cupsd.service cronie`
+
+Zeiteinstellungen
+`systemctl enable systemd-timesyncd.service`
+Erst nach einem Neustart
+`hwclock -w`
+
+# XOrg Server installieren
+(Anleitung für Einsteiger Vorlage)
+`pacman -S xorg-server xorg-xinit`
+
+## Grafikkarte
+XF86-video-ati für ATI oder AMD-Grafikkarten
+XF86-video-intel für Intel (onboard) Grafikkarten
+XF86-video-nuovo (vermutlich schlechtester) Opensource Treiber für Nvidia Grafikkarten
+pacman -S nvidia wäre der proprietäre Treiber
+
+#XFCE4 installieren
+`pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter networkmanager network-manager-applet nm-connection-editor alsa-tools alsa-utils pulseaudio-alsa pavucontrol
+
+systemctl enable lightdm.service NetworkManager`
+
+##Software installieren
+`pacman -S chromium firefox
+pacman -S gnome-keyring
+pacman -S libreoffice-fresh libreoffice-fresh-de hunspell-de
+pacman -S mpv qt4 vlc
+pacman -S ttf-ubuntu-font-family ttf-liberation ttf-hana-zono ttf-droid ttf-freefont noto-fonts
+pacman -S human-icon-theme elemetary-icon-theme arc-icon-theme faenza-icon-theme
+pacman -S deepin-gtk-theme numix-gtk-theme
+pacman-S gtk-engine-murrine
+`
 
 exit
 umount -R /mnt

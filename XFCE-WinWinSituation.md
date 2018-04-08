@@ -47,4 +47,8 @@ Noch ein neuer Befehl hinzufügen und unter Öffnen das Programm „Thunar“ (m
 
 Nun in der Fensterverwaltung um Reiter Tastatur Fenster … kacheln auf Super+<Cursortaste> legen.
 
+In den Leisteneinstellungen unter Leiste 2 alles löschen, was man nicht braucht (Verzeichnis Menu, Schreibtisch anzeigen, Trennelemente). Starter mit Aktionsknöpfe anlegen und editieren.
+
+
+
 Arch Linux + Xfce = Win-win-Situation 16:42

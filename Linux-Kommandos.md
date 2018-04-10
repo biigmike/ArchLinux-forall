@@ -1,16 +1,18 @@
-#Linux Kommandos für den Administrator
+# Linux Kommandos für den Administrator
 
-## Benutzer anlegen
+## Benutzer
 
-## neue Gruppe anlegen
+### Benutzer anlegen
+
+### neue Gruppe anlegen
 `sudo groupadd <Gruppenname>`
 
-## Benutzer eine (zusätzliche) Gruppe hinzufügen
+### Benutzer eine (zusätzliche) Gruppe hinzufügen
 `sudo usermod -aG <gruppenname> <username>`
 (sieht man erst nach einer Neuanmeldung)
 
-## Gruppen anzeigen
+### Gruppen anzeigen
 `groups <username>`
 
-## Eigene Benutzerdaten anzeigen
+### Eigene Benutzerdaten anzeigen
 `id <username>`

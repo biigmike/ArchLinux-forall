@@ -3,7 +3,7 @@
 ## Benutzer
 
 ### Benutzer anlegen
-
+`useradd -m -g users -G wheel,audio,video -s /bin/bash <username>`
 ### neue Gruppe anlegen
 `sudo groupadd <Gruppenname>`
 

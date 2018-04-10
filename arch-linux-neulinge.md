@@ -6,8 +6,8 @@ Btrfs-Snapper-Pamac
 ## Partitionierung
 ***************
 /dev/sda1* ==> Label=ROOT ==> Btrfs
-|Btrfs Subvolumes: | @ | @log	| @pkg | @snapshots|
-|==> Arch Linux System | / >| /var/log | /var/cache/pacman/pkg >| /.snapshots |
+Btrfs Subvolumes:      @     @log	          @pkg                @snapshots
+==> Arch Linux System  / -> /var/log -> /var/cache/pacman/pkg -> /.snapshots 
 /dev/sda2 ==> Label=HOME ==> XFS
 ==> Benutzerdaten	/home
 /dev/sda3 ==> Label=SWAP ==> Linux Swap

@@ -31,12 +31,12 @@ mkswap -L SWAP /dev/sda3`
 ********************
 ## Subvolumes erstellen
 ********************
-`mount /dev/sda1 /mnt
-btrfs sub cr /mnt/@
-btrfs sub cr /mnt/@log
-btrfs sub cr /mnt/@pkg
-btrfs sub cr /mnt/@snapshots
-umount /mnt`
+`mount /dev/sda1 /mnt`
+`btrfs sub cr /mnt/@`
+`btrfs sub cr /mnt/@log`
+`btrfs sub cr /mnt/@pkg`
+`btrfs sub cr /mnt/@snapshots`
+`umount /mnt`
 
 ********************
 ## Dateisysteme mounten

@@ -61,16 +61,29 @@ swapon /dev/sda3`
 fstab nacharbeiten. Die ID's vom Btrfs rausnehmen und nur die subvols stehen lassen ausser bei subvolid=5.
 
 ************************
-#Bootloader Konfiguration
+#Bootloader Konfiguration/Installation
 ************************
-
+##Konfiguration
 `grub-mkconfig -o /boot/grub/grub.cfg`
+
+##Installation
+Für EFI Installation:
+`grub-install --target=x86_64-efi --efidirectory=/boot/efi`
+Für BIOS Installation:
+`grub-install /dev/sda`
 
 **************************
 ##Optional die Fehlermeldung des Journallog beim Herunterfahren zu entfernen
 **************************
 
 In Datei /etc/systemd/journald.conf im Block [Journal] den Eintrag Storage=volatile setzen
+
+# mkinitcpio konfigurieren
+`nano /etc/mkinitcpio.conf`
+In der Zeile "HOOKS=..."  am Ende das "fsck" weg machen und vor "filesystems" ein "btrfs" davor schreiben.
+Sollte dann so aussehen:
+
+"HOOKS="base udev autodetect modconf block btrfs filesystems keyboard"
 
 **************************************
 ##Überprüfung ob alle Subvolumes da sind

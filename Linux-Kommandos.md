@@ -16,3 +16,10 @@
 
 ### Eigene Benutzerdaten anzeigen
 `id <username>`
+
+### Cups - Drucker angehalten
+auf Konsole den Befehl:
+`cupsenable <druckername>`
+aufrufen. Es könnte sein, dass der Netzwerkdrucker angehalten wird, wenn er nach Ablauf eines Timeouts nicht mehr gefunden wurde. Das ganze kann man unterdrücken, wenn man in der Konfigurationsdatei /etc/cups/cupsd.conf die Zeile:
+`Timeout 0` 
+einfügt

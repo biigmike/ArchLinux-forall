@@ -22,7 +22,10 @@ auf Konsole den Befehl:
 `cupsenable <druckername>`
 aufrufen. Es könnte sein, dass der Netzwerkdrucker angehalten wird, wenn er nach Ablauf eines Timeouts nicht mehr gefunden wurde. Das ganze kann man unterdrücken, wenn man in der Konfigurationsdatei /etc/cups/cupsd.conf die Zeile:
 `Timeout 0` 
-einfügt
+einfügt.
+
+Um den Cups-Dienst neu zu starten benutzt man den Befehl: 
+`systemctl restart org.cups.cupsd.service`
 
 ### Teamviwer verbinden
 Als erstes muss der Teamviewer Daemon laufen 

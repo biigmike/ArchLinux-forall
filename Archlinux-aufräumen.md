@@ -14,3 +14,8 @@ Archivierte Pakete können hiermit differenzierter als mit pacman -Scc bereinigt
 Zur automatischen Bereinugung gibt es einen Systemd Timer. Bei aktiviertem Timer wird der Cache wöchentlich mit paccache -r bereinigt.
 
     systemctl enable paccache.timer
+## Aus einem anderen [Blog](https://luyinsblog.wordpress.com/2018/01/30/arch-linux-aufraeumen/)
+    pacman -Qet # zeigt explizit installierte (-e) Pakete, die von keinem anderen Paket gebraucht werden (-t); effektiv sind das alle vom User installierte Pakete
+    pacman -Rs paketname    # deinstalliert das Paket  zusammen mit all seinen Abhängigkeiten, sofern diese ebenfalls nicht mehr benötigt werden
+    pacman -Sc  # entfernt Pakete aus dem Package Cache ebenso wie nicht in Gebrauch befindliche Sync Datenbanken (falls man z. B. testing in pacman.conf aktiviert hatte und es inzwischen wieder deaktiviert hat, wird dadurch die Datenbank für testing entfernt)
+    pacman -Rs $(pacman -Qdttq) # entfernt Pakete und ihre Abhängigkeiten, die als Abhängigkeiten installiert wurden (-d) und von keinem Paket benötigt werden; der doppelte Aufruf von -t bewirkt, dass optionale Abhängigkeiten nicht aufgeführt werden, sodass diese installiert bleiben

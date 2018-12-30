@@ -2,7 +2,7 @@
 Diese Datei dient dazu, Informationen bereit zu stellen um ein Arch linux aufzuräumen und zu entschlacken.
 (unnötige Pakete entfernen, Dateileichen zu entfernen die keiner mehr braucht,...)
 
-## Paccache(like https://wiki.archlinux.de/title/Pacman#Paccache)
+## [Paccache](https://wiki.archlinux.de/title/Pacman#Paccache)
 Paccache ist ein Werkzeug zur Bereinigung des Pacman-Cache /var/cache/pacman/pkg.
 
 Archivierte Pakete können hiermit differenzierter als mit pacman -Scc bereinigt werden. Eine Übersicht der Möglichkeiten erhält man mit dem Befehl paccache -h. Zur Bereinigung des Paket-Cache kann man beispielsweise so vorgehen:

@@ -5,6 +5,14 @@ Btrfs-Snapper-Pamac
 ***************
 ## Partitionierung
 ***************
+### Einfachste Art
+/dev/sda1* ==> Label=ROOT ==> Btrfs
+Btrfs Subvolumes:      @     @home  @log	          @pkg                @snapshots
+==> Arch Linux System  / -> /home -> /var/log -> /var/cache/pacman/pkg -> /.snapshots 
+
+/dev/sda3 ==> Label=SWAP ==> Linux Swap
+
+### Für Leute, die nur Anwender sind
 /dev/sda1* ==> Label=ROOT ==> Btrfs
 
 Btrfs Subvolumes:      @     @log	          @pkg                @snapshots
@@ -60,20 +68,37 @@ swapon /dev/sda3`
 
 fstab nacharbeiten. Die ID's vom Btrfs rausnehmen und nur die subvols stehen lassen ausser bei subvolid=5.
 
-************************
-#Bootloader Konfiguration/Installation
-************************
-##Konfiguration
-`grub-mkconfig -o /boot/grub/grub.cfg`
+## System Konfiguration
+- In die Inatallation wechseln mit:
+`arch-chroot /mnt/`
+- Rechnernamen vergeben mit:
+`echo arch-laptop > /etc/hostname`
+- Spracheinstellungen festlegen: 
+`echo LANG=de_DE.UTF-8 > /etc/locale.conf`
+`echo LANGUAGE=de_DE >> /etc/locale.conf`
+- Locales generieren:
+Datei mit `nano /etc/locale.gen` öffnen und die Zeile `de_DE.UTF-8 UTF-8` das Kommentarteichen weg nehmen. Dann mit `locale-gen` die Locales generieren.
+- Tastaturbelegung der Konsole einstellen mit: `echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf`
+- Zeitzone festlegen mit: `ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime`
+- Pacman Konfiguration bearbeiten mit `nano /etc/pacman.conf` den Bereich für [Multilib] freischalten um 32-bit Programma ausführen zu können. Danach mit `pacman -Syu` das System updaten.
+- Root Passwort vergeben mit `passwd`
 
-##Installation
+
+************************
+# Bootloader Konfiguration/Installation
+************************
+
+## Installation
 Für EFI Installation:
 `grub-install --target=x86_64-efi --efidirectory=/boot/efi`
 Für BIOS Installation:
 `grub-install /dev/sda`
 
+## Konfiguration
+`grub-mkconfig -o /boot/grub/grub.cfg`
+
 **************************
-##Optional die Fehlermeldung des Journallog beim Herunterfahren zu entfernen
+## Optional die Fehlermeldung des Journallog beim Herunterfahren zu entfernen
 **************************
 
 In Datei /etc/systemd/journald.conf im Block [Journal] den Eintrag Storage=volatile setzen
@@ -85,8 +110,21 @@ Sollte dann so aussehen:
 
 "HOOKS="base udev autodetect modconf block btrfs filesystems keyboard"
 
+# X-System installieren und Vorzugsweise XFCE
+## User anlegen
+Ein User mit mehreren Gruppen anlegen mit: `useradd -m -g users -G wheel,audio,video -s /bin/bash mike`
+und dem User mit `passwd mike` ein Passwort zuweisen.
+## Sudo konfigurieren
+Sudo konfiguriert man mit: `EDITOR=nano visudo` und die Zeile `%wheel ALL=(ALL) ALL` auskommentieren,
+damit die User der Gruppe wheel Sudo-Rechte haben.
+## Nützliche Dienste installieren
+Ein paar nützliche Dienste mit `pacman -S acpid avahi cups cronie`installieren.
+Dienste startenmit `systemctl enable acpid avahi-daemon org.cups.cupsd.service cronie`
+Zeitsyncronisation mit `systemctl enable systemd-timesyncd.service` starten.
+
+
 **************************************
-##Überprüfung ob alle Subvolumes da sind
+## Überprüfung ob alle Subvolumes da sind
 **************************************
 `sudo su
 btrfs sub list /`

@@ -49,6 +49,26 @@ Nun in der Fensterverwaltung um Reiter Tastatur Fenster … kacheln auf Super+<C
 
 In den Leisteneinstellungen unter Leiste 2 alles löschen, was man nicht braucht (Verzeichnis Menu, Schreibtisch anzeigen, Trennelemente). Starter mit Aktionsknöpfe anlegen und editieren.
 
+Neuen Starter -> Aktionsknöpfe in der untersten Leiste anlegen und editieren. Häkchen wegmachen, was man nicht braucht (mit den Aktionsknöpfen der oberen Leiste vergleichen)
+
+In der oberen Leiste bei Benachrichtigungen den Haken bei Rahmen anzeigen entfernen. ggf. bei Uhr das Format ändern. Fensterknöpfe flach rein und Griff anzeigen raus. Fenster gruppert.
+
+Software installieren: trizen vibrancy-colors arc-gtk-theme noto-fonts noto-emoji xfce4-pulseaudio-plugin pavucontrol
+
+Unter Einstellungen->Erscheinungsbild das Thema Arc-Dark auswählen. Im Reiter Symbole Vibrancy-NonMono-Dark-Graphite auswählen. Im Reiter Schriften die Vorgabeschrift auf Noto Sans stellen und die Farbreihenfolge auf RGB und die Kantenglättung (Hint) auf Stark stellen. Dann zurück auf die Einstellungen.
+
+Unter Fensterverwaltung die Titelschrift auf Noto Sans Bold setzen und die Anordnung der Knöpfe kontrollieren (Einrollen runter schieben). Und die Fensterdekoration (Thema) auf Arc-Dark. Dann wieder zurück auf alle Einstellungen.
+
+In Feineinstellungen der Fesnterverwaltung den Reiter Platzierung öffnen und den oberen Regler ganz nach rechts schieben.
+
+Terminal öffnen und in den Einstellungen die Schrift auf Noto Mono Regular ändern.
+
+In der oberen Leiste bei den Einstellungen das Objekt PulseAudio Plugin hinzufügen 
+
+Wallpaper einstellen/herunterladen
+
+Um Netzwerkgeräte, Handys u.s.w. mounten zu können, folgende Software installieren:
+trizen -S gvfs gvfs-smb gvfs-nfs gvfs-mtp gvfs-gphoto2 gvfs-afc mtpfs ifuse exfat-utils ntfs-3g f2fs-tools
 
 
-Arch Linux + Xfce = Win-win-Situation 16:42
+Arch Linux + Xfce = Win-win-Situation 30:20

@@ -70,5 +70,13 @@ Wallpaper einstellen/herunterladen
 Um Netzwerkgeräte, Handys u.s.w. mounten zu können, folgende Software installieren:
 trizen -S gvfs gvfs-smb gvfs-nfs gvfs-mtp gvfs-gphoto2 gvfs-afc mtpfs ifuse exfat-utils ntfs-3g f2fs-tools
 
+In Einstellungen auf Wechseldatenträger- und Medieneinstellungen gehen. Im Reiter Datenträger die Häkchen bei Hotplug-Wechsellaufwerke automatisch einhängen, Wechselmedien beim Einlegen einhängen und Wechselmedien beim Einhängen öffnen anhaken.
 
-Arch Linux + Xfce = Win-win-Situation 30:20
+Danach unter Einstellungen die Benachrichtigungen öffnen Ausblenden nach auf 5 sek setzen.
+
+Im Thunar Dateimanager auf Bearbeiten->Benutzerdefinierte Aktionen... 
+
+
+
+
+Arch Linux + Xfce = Win-win-Situation 30:33

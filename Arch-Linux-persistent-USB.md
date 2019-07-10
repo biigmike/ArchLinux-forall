@@ -1,4 +1,4 @@
-Arch Linux persistent auf ein USB-Stick installieren
+# Arch Linux persistent auf ein USB-Stick installieren
 
 Link: https://github.com/r-darwish/alma/blob/master/README.md
 

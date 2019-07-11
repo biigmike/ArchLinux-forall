@@ -11,6 +11,6 @@ erhält man ein nacktes Arch Linux System, was vom USB-Stick aus gebootet werden
 
 Um das System einzudeutschen kann man das folgende Skript mit wget herunterladen:
 
-wget https://github.com/biigmike/ArchLinux-forall/blob/master/arch-deutsch.sh
+wget https://raw.githubusercontent.com/biigmike/ArchLinux-forall/master/arch-deutsch.sh
 
 Danach editiert man das Skript (z.B. mit nano) und fügt den gewünschten Hostnamen ein.

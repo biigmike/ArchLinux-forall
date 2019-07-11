@@ -25,7 +25,7 @@ Mit `pacman -S acpid avahi cups cronie` installieren und mit `systemctl enable a
 mit `date` das Datum kontrollieren und dann mit `hwclock -w` aktivieren (Nähere Infos siehe Einsteigerguide unter "Automatische Zeiteinstellung".
 
 ## X-Server installieren
-`pacman -S xorg-server xorg-xinit xf86-video`
+`pacman -S xorg-server xorg-xinit xorg-drivers`
 
 ## XFCE-Desktopumgebung und einige Programme
 `pacman -S xfce4 xfce4-goodies lightdm lightdm-gtk-greeter bash-completion networkmanager network-manager-applet nm-connection-editor 
